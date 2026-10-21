@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Career Guidance Using AI | Discover Your Ideal Career Path</title>
-  <meta name="description" content="Beginner-friendly AI-driven career assessment, personalized recommendations, career details, and step-by-step learning roadmaps.">
+  <meta name="description" content="Beginner-friendly rule-based career guidance web app. Personalized career recommendations, interactive student dashboard, and step-by-step learning roadmaps.">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,26 +12,30 @@
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Site Navigation Header -->
   <header class="site-header" id="site-header">
     <div class="container nav-container">
-      <a href="#home" class="brand-logo" id="brand-logo">
+      <a href="#home" class="brand-logo" id="brand-logo" onclick="navigateToSection('home')">
         <div class="logo-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
         </div>
         <div class="brand-text">
-          <span class="brand-title">CareerAI</span>
-          <span class="brand-subtitle">Smart Guidance System</span>
+          <span class="brand-title">Smart Career Guidance</span>
+          <span class="brand-subtitle">AI & Rule-Based Advisory</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
+      <!-- Desktop & Tablet Navigation Menu -->
       <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
         <a href="#home" class="nav-link active" data-target="home">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
           Home
+        </a>
+        <a href="#dashboard" class="nav-link" data-target="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+          Student Dashboard
         </a>
         <a href="#assessment" class="nav-link" data-target="assessment">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -50,7 +54,7 @@
 
       <div class="nav-cta-wrapper">
         <button type="button" class="btn btn-sm btn-primary" id="header-cta-btn" onclick="navigateToSection('assessment')">
-          Take Assessment
+          Start Assessment
         </button>
         <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
           <span></span>
@@ -61,18 +65,18 @@
     </div>
   </header>
 
-  <!-- Notification Banner for Saved Results -->
+  <!-- Notification Banner for Saved Results in LocalStorage -->
   <div id="saved-results-banner" class="saved-banner container" style="display: none;">
     <div class="saved-banner-content">
       <div class="saved-banner-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
       </div>
       <div class="saved-banner-text">
-        <span id="saved-banner-msg">Welcome back! We found your previous career assessment for <strong>Prajakta</strong>.</span>
+        <span id="saved-banner-msg">Welcome back! We found your previous career assessment.</span>
       </div>
     </div>
     <div class="saved-banner-actions">
-      <button type="button" class="btn btn-sm btn-outline-white" onclick="navigateToSection('recommendations')">View Saved Results</button>
+      <button type="button" class="btn btn-sm btn-outline-white" onclick="navigateToSection('dashboard')">View Dashboard</button>
       <button type="button" class="btn btn-sm btn-ghost-white" onclick="clearSavedData()" title="Clear saved data">Start Fresh</button>
     </div>
   </div>
@@ -90,33 +94,28 @@
           <div class="hero-content">
             <div class="hero-badge">
               <span class="badge-dot"></span>
-              <span>Transparent Rule-Based AI Engine • 100% Free & Offline</span>
+              <span>Transparent Rule-Based Guidance • 100% Free & Local</span>
             </div>
             <h1 class="hero-title">
-              Discover Your Ideal Career with <span class="gradient-text">Smart AI Guidance</span>
+              Smart Career Guidance <span class="gradient-text">Using AI</span>
             </h1>
             <p class="hero-subtitle">
-              Struggling to choose the right career path? Our intelligent career guidance system analyzes your favorite subjects, interests, skills, and goals to deliver tailored career recommendations and step-by-step learning roadmaps.
+              Welcome to your personal career guidance counselor. Our intelligent system analyzes your favorite subjects, interests, skills, education level, and career aspirations to deliver your top 3 matching career paths and personalized learning roadmaps.
             </p>
             <div class="hero-actions">
               <button type="button" class="btn btn-primary btn-lg" onclick="navigateToSection('assessment')">
-                <span>Start Career Assessment</span>
+                <span>Start Assessment</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
-              <button type="button" class="btn btn-secondary btn-lg" onclick="exploreAllCareers()">
-                <span>Explore Careers</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <button type="button" class="btn btn-secondary btn-lg" onclick="navigateToSection('dashboard')">
+                <span>Student Dashboard</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
               </button>
             </div>
             <div class="hero-trust">
               <div class="trust-item">
-                <span class="trust-number">10+</span>
-                <span class="trust-label">Career Fields</span>
-              </div>
-              <div class="trust-divider"></div>
-              <div class="trust-item">
-                <span class="trust-number">40+</span>
-                <span class="trust-label">Industry Skills</span>
+                <span class="trust-number">10</span>
+                <span class="trust-label">Diverse Careers</span>
               </div>
               <div class="trust-divider"></div>
               <div class="trust-item">
@@ -125,8 +124,13 @@
               </div>
               <div class="trust-divider"></div>
               <div class="trust-item">
+                <span class="trust-number">4-Phase</span>
+                <span class="trust-label">Roadmaps</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
                 <span class="trust-number">100%</span>
-                <span class="trust-label">Privacy Protected</span>
+                <span class="trust-label">Private & Offline</span>
               </div>
             </div>
           </div>
@@ -138,7 +142,7 @@
                   <span class="dot dot-yellow"></span>
                   <span class="dot dot-green"></span>
                 </div>
-                <span class="visual-tag">Smart Career Matcher v1.0</span>
+                <span class="visual-tag">Career Guidance Engine v1.0</span>
               </div>
               <div class="visual-body">
                 <div class="card-preview-row">
@@ -152,21 +156,21 @@
                 </div>
                 <div class="match-bars-demo">
                   <div class="demo-bar-item">
-                    <div class="bar-label"><span>Software Engineering</span><span class="bar-pct">96%</span></div>
+                    <div class="bar-label"><span>Software Developer</span><span class="bar-pct">96%</span></div>
                     <div class="progress-track"><div class="progress-fill" style="width: 96%;"></div></div>
                   </div>
                   <div class="demo-bar-item">
-                    <div class="bar-label"><span>Data Science & AI</span><span class="bar-pct">89%</span></div>
-                    <div class="progress-track"><div class="progress-fill" style="width: 89%;"></div></div>
+                    <div class="bar-label"><span>AI Engineer</span><span class="bar-pct">91%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 91%;"></div></div>
                   </div>
                   <div class="demo-bar-item">
-                    <div class="bar-label"><span>UI/UX Product Design</span><span class="bar-pct">82%</span></div>
-                    <div class="progress-track"><div class="progress-fill" style="width: 82%;"></div></div>
+                    <div class="bar-label"><span>Data Analyst</span><span class="bar-pct">85%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 85%;"></div></div>
                   </div>
                 </div>
                 <div class="preview-ai-badge">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                  <span>Rule-Based Weighted Scoring Algorithm</span>
+                  <span>Transparent Rule-Based Scoring Engine</span>
                 </div>
               </div>
             </div>
@@ -178,10 +182,10 @@
       <div class="section-block bg-subtle">
         <div class="container">
           <div class="section-header text-center">
-            <span class="section-badge">Simple 3-Step Process</span>
-            <h2 class="section-title">How Smart Career Guidance Works</h2>
+            <span class="section-badge">How It Works</span>
+            <h2 class="section-title">Step-by-Step Path to Your Future</h2>
             <p class="section-subtitle">
-              We eliminate guesswork with a systematic, transparent algorithm that connects your real passions to in-demand professions.
+              We eliminate confusion with a transparent, structured system that maps your real skills and interests to suitable career paths.
             </p>
           </div>
 
@@ -193,7 +197,7 @@
               </div>
               <h3 class="step-title">Take the Assessment</h3>
               <p class="step-desc">
-                Fill in your education level, favorite school subjects, personal interests, existing skills, and career priorities in a simple questionnaire.
+                Tell us your name, age, education level, favorite school subjects, personal interests, existing skills, and career goals in our simple questionnaire.
               </p>
             </div>
 
@@ -202,9 +206,9 @@
               <div class="step-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
               </div>
-              <h3 class="step-title">AI Compatibility Scoring</h3>
+              <h3 class="step-title">Get AI Recommendations</h3>
               <p class="step-desc">
-                Our rule-based engine computes multi-dimensional match scores across industry roles, explaining exactly why each career fits your profile.
+                Our transparent rule-based algorithm scores your answers against 10 diverse fields and calculates your Top 3 best-fit careers with clear explanations.
               </p>
             </div>
 
@@ -213,89 +217,64 @@
               <div class="step-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
               </div>
-              <h3 class="step-title">Get Roadmap & Projects</h3>
+              <h3 class="step-title">Follow the Roadmap</h3>
               <p class="step-desc">
-                Explore detailed role descriptions, required skills, degree paths, and follow an actionable 4-phase learning roadmap with suggested projects.
+                Follow a step-by-step 4-phase learning roadmap, explore suggested free courses, build beginner portfolio projects, and track your milestone progress.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Feature Grid -->
+      <!-- Supported Career Fields Overview -->
       <div class="section-block">
         <div class="container">
           <div class="section-header text-center">
-            <span class="section-badge">Key Features</span>
-            <h2 class="section-title">Built for Students & Career Switchers</h2>
-            <p class="section-subtitle">Everything you need to move from uncertainty to clarity.</p>
+            <span class="section-badge">10 Supported Careers</span>
+            <h2 class="section-title">Explore Diverse Career Paths</h2>
+            <p class="section-subtitle">
+              From engineering and healthcare to creative arts, data analysis, and civil service.
+            </p>
           </div>
 
-          <div class="features-grid">
-            <div class="feature-item">
-              <div class="feature-icon blue-bg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-              </div>
-              <h4>Top 3 Career Recommendations</h4>
-              <p>Get your primary match along with two strong alternatives so you have versatile, high-growth career options.</p>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon purple-bg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-              </div>
-              <h4>Deep Career Insights</h4>
-              <p>Explore day-to-day job duties, modern tool stacks, degree and educational routes, and average starting salaries.</p>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon blue-bg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              </div>
-              <h4>4-Phase Learning Roadmaps</h4>
-              <p>From beginner foundations to industry capstone projects, follow structured step-by-step milestones with progress tracking.</p>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon purple-bg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-              </div>
-              <h4>Hands-on Project Ideas</h4>
-              <p>Suggested beginner, intermediate, and advanced portfolio projects tailored to each career to prove your practical capability.</p>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon blue-bg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path></svg>
-              </div>
-              <h4>Local Storage Persistence</h4>
-              <p>Your assessment and recommendations stay saved in your browser. Close the tab anytime and resume whenever you return.</p>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon purple-bg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              </div>
-              <h4>100% Transparent & Private</h4>
-              <p>No paid AI keys, no registration required, and no hidden tracking. Open-source, transparent rule-based logic.</p>
-            </div>
-          </div>
-
-          <div class="cta-banner">
-            <div class="cta-banner-content">
-              <h3>Ready to discover where your strengths can take you?</h3>
-              <p>Take 2 minutes to complete the guided assessment and receive your custom report.</p>
-            </div>
-            <button type="button" class="btn btn-primary btn-lg" onclick="navigateToSection('assessment')">
-              Start Assessment Now
-            </button>
+          <div class="careers-chips-display">
+            <div class="career-chip-card" onclick="openRoadmapForCareer('software-developer')">💻 Software Developer</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('data-analyst')">📊 Data Analyst</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('ai-engineer')">🤖 AI Engineer</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('doctor')">🩺 Doctor</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('teacher')">📚 Teacher</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('civil-engineer')">🏗️ Civil Engineer</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('graphic-designer')">🎨 Graphic Designer</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('cybersecurity-analyst')">🛡️ Cybersecurity Analyst</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('business-analyst')">💼 Business Analyst</div>
+            <div class="career-chip-card" onclick="openRoadmapForCareer('government-officer')">🏛️ Government Officer</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- 2. ASSESSMENT SECTION                     -->
+    <!-- 2. STUDENT DASHBOARD SECTION              -->
+    <!-- ========================================== -->
+    <section id="dashboard" class="spa-section">
+      <div class="container section-container">
+        <div class="section-header">
+          <span class="section-badge">Student Dashboard</span>
+          <h2 class="page-title">Your Career Guidance Center</h2>
+          <p class="page-desc">
+            Monitor your latest assessment results, view top career recommendations, and track your active learning roadmap progress.
+          </p>
+        </div>
+
+        <!-- Dynamic Container injected by renderDashboardUI() in script.js -->
+        <div id="dashboard-content-area">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. CAREER ASSESSMENT SECTION              -->
     <!-- ========================================== -->
     <section id="assessment" class="spa-section">
       <div class="container section-container">
@@ -313,35 +292,38 @@
           <div class="prefill-box">
             <span class="prefill-label">⚡ Quick Test Profiles (One-Click Demo):</span>
             <div class="prefill-buttons">
-              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('tech')">Tech Enthusiast</button>
-              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('creative')">Creative Designer</button>
-              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('data')">Data & AI</button>
-              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('healthcare')">Healthcare & Science</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('software')">Software Developer</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('doctor')">Doctor</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('civil')">Civil Engineer</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('data')">Data Analyst</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('teacher')">Teacher</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('gov')">Govt Officer</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('design')">Graphic Designer</button>
               <button type="button" class="btn btn-xs btn-ghost text-danger" onclick="resetAssessmentForm()">Reset</button>
             </div>
           </div>
         </div>
 
-        <!-- Validation Error Message Area -->
+        <!-- Validation Error Message Banner -->
         <div id="form-error-banner" class="alert-banner alert-danger" style="display: none;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-          <div id="form-error-text">Please complete all required fields before submitting.</div>
+          <div id="form-error-text">Please complete all required fields (Name, Age, Education, Subjects, Interests, and Skills) before submitting.</div>
         </div>
 
         <!-- Assessment Form -->
         <form id="career-assessment-form" onsubmit="handleAssessmentSubmit(event)" novalidate>
           
-          <!-- Step 1: Personal & Education -->
+          <!-- Step 1: Student Registration (Personal & Academic Background) -->
           <div class="form-card">
             <div class="form-card-header">
               <div class="card-step-badge">1</div>
               <div>
-                <h3 class="form-card-title">Personal & Academic Background</h3>
-                <p class="form-card-desc">Tell us your name and where you currently stand in your education journey.</p>
+                <h3 class="form-card-title">Student Registration</h3>
+                <p class="form-card-desc">Enter your name, age, and where you currently stand in your education journey.</p>
               </div>
             </div>
 
-            <div class="form-grid-2">
+            <div class="form-grid-3">
               <div class="form-group" id="group-name">
                 <label for="student-name" class="form-label">
                   Full Name <span class="required">*</span>
@@ -350,7 +332,18 @@
                   <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                   <input type="text" id="student-name" name="studentName" class="form-control" placeholder="e.g. Prajakta Sharma" required>
                 </div>
-                <span class="field-error-msg" id="error-name">Please enter your name.</span>
+                <span class="field-error-msg" id="error-name">Please enter your name (at least 2 letters).</span>
+              </div>
+
+              <div class="form-group" id="group-age">
+                <label for="student-age" class="form-label">
+                  Age <span class="required">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                  <input type="number" id="student-age" name="studentAge" class="form-control" placeholder="e.g. 19" min="10" max="100" required>
+                </div>
+                <span class="field-error-msg" id="error-age">Please enter a valid age (10 to 100).</span>
               </div>
 
               <div class="form-group" id="group-education">
@@ -360,7 +353,7 @@
                 <div class="input-wrapper">
                   <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                   <select id="education-level" name="educationLevel" class="form-control" required>
-                    <option value="">-- Select Your Current Education Level --</option>
+                    <option value="">-- Select Education Level --</option>
                     <option value="highschool">High School (Grade 10th - 12th)</option>
                     <option value="undergraduate">Undergraduate Student (College / University)</option>
                     <option value="postgraduate">Postgraduate / Master's Student</option>
@@ -384,14 +377,6 @@
 
             <div class="checkbox-pills-grid">
               <label class="pill-checkbox">
-                <input type="checkbox" name="subjects" value="math">
-                <span class="pill-content">
-                  <span class="pill-icon">📐</span>
-                  <span class="pill-text">Mathematics & Logic</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
                 <input type="checkbox" name="subjects" value="cs">
                 <span class="pill-content">
                   <span class="pill-icon">💻</span>
@@ -400,10 +385,18 @@
               </label>
 
               <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="math">
+                <span class="pill-content">
+                  <span class="pill-icon">📐</span>
+                  <span class="pill-text">Mathematics & Logic</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
                 <input type="checkbox" name="subjects" value="physics">
                 <span class="pill-content">
                   <span class="pill-icon">⚡</span>
-                  <span class="pill-text">Physics & Electronics</span>
+                  <span class="pill-text">Physics & Physical Sciences</span>
                 </span>
               </label>
 
@@ -412,6 +405,14 @@
                 <span class="pill-content">
                   <span class="pill-icon">🧬</span>
                   <span class="pill-text">Biology & Life Sciences</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="engineering">
+                <span class="pill-content">
+                  <span class="pill-icon">🏗️</span>
+                  <span class="pill-text">Civil & Structural Engineering</span>
                 </span>
               </label>
 
@@ -427,7 +428,23 @@
                 <input type="checkbox" name="subjects" value="business">
                 <span class="pill-content">
                   <span class="pill-icon">📊</span>
-                  <span class="pill-text">Business, Economics & Commerce</span>
+                  <span class="pill-text">Business, Commerce & Economics</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="social-studies">
+                <span class="pill-content">
+                  <span class="pill-icon">🏛️</span>
+                  <span class="pill-text">Civics, Law & Social Studies</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="languages">
+                <span class="pill-content">
+                  <span class="pill-icon">✍️</span>
+                  <span class="pill-text">Literature & Languages</span>
                 </span>
               </label>
 
@@ -435,15 +452,7 @@
                 <input type="checkbox" name="subjects" value="psychology">
                 <span class="pill-content">
                   <span class="pill-icon">🧠</span>
-                  <span class="pill-text">Psychology & Social Sciences</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="subjects" value="literature">
-                <span class="pill-content">
-                  <span class="pill-icon">✍️</span>
-                  <span class="pill-text">Literature & Writing</span>
+                  <span class="pill-text">Psychology & Human Behavior</span>
                 </span>
               </label>
             </div>
@@ -456,7 +465,7 @@
               <div class="card-step-badge">3</div>
               <div>
                 <h3 class="form-card-title">Interests & Passions <span class="required">*</span></h3>
-                <p class="form-card-desc">What activities genuinely spark your curiosity and excitement? (Select at least 1)</p>
+                <p class="form-card-desc">What activities genuinely excite your curiosity? (Select at least 1)</p>
               </div>
             </div>
 
@@ -465,15 +474,7 @@
                 <input type="checkbox" name="interests" value="coding">
                 <span class="pill-content">
                   <span class="pill-icon">🚀</span>
-                  <span class="pill-text">Writing Code & Building Apps</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="design">
-                <span class="pill-content">
-                  <span class="pill-icon">✨</span>
-                  <span class="pill-text">UI/UX & Creative Visuals</span>
+                  <span class="pill-text">Writing Code & Building Software</span>
                 </span>
               </label>
 
@@ -481,15 +482,15 @@
                 <input type="checkbox" name="interests" value="data">
                 <span class="pill-content">
                   <span class="pill-icon">📈</span>
-                  <span class="pill-text">Analyzing Data, Patterns & AI</span>
+                  <span class="pill-text">Analyzing Data, Numbers & Trends</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="security">
+                <input type="checkbox" name="interests" value="ai">
                 <span class="pill-content">
-                  <span class="pill-icon">🛡️</span>
-                  <span class="pill-text">Cybersecurity & Ethical Hacking</span>
+                  <span class="pill-icon">🤖</span>
+                  <span class="pill-text">Artificial Intelligence & Robotics</span>
                 </span>
               </label>
 
@@ -497,47 +498,55 @@
                 <input type="checkbox" name="interests" value="healthcare">
                 <span class="pill-content">
                   <span class="pill-icon">🩺</span>
-                  <span class="pill-text">Healthcare, Medicine & Helping People</span>
+                  <span class="pill-text">Medicine, Healthcare & Patient Care</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="business">
+                <input type="checkbox" name="interests" value="teaching">
+                <span class="pill-content">
+                  <span class="pill-icon">📚</span>
+                  <span class="pill-text">Teaching, Mentoring & Inspiring Others</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="construction">
+                <span class="pill-content">
+                  <span class="pill-icon">🏗️</span>
+                  <span class="pill-text">Civil Construction & Infrastructure</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="graphic-design">
+                <span class="pill-content">
+                  <span class="pill-icon">✨</span>
+                  <span class="pill-text">Graphic Design & Visual Arts</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="cybersecurity">
+                <span class="pill-content">
+                  <span class="pill-icon">🛡️</span>
+                  <span class="pill-text">Cybersecurity & Ethical Hacking</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="business-analysis">
                 <span class="pill-content">
                   <span class="pill-icon">💼</span>
-                  <span class="pill-text">Business Strategy & Startups</span>
+                  <span class="pill-text">Business Strategy & Operations</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="marketing">
+                <input type="checkbox" name="interests" value="governance">
                 <span class="pill-content">
-                  <span class="pill-icon">📢</span>
-                  <span class="pill-text">Marketing, Social Media & Growth</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="hardware">
-                <span class="pill-content">
-                  <span class="pill-icon">🤖</span>
-                  <span class="pill-text">Cloud Infrastructure & Hardware</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="writing">
-                <span class="pill-content">
-                  <span class="pill-icon">📝</span>
-                  <span class="pill-text">Content Writing & Technical Storytelling</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="interests" value="leadership">
-                <span class="pill-content">
-                  <span class="pill-icon">👥</span>
-                  <span class="pill-text">Project Leadership & Coordinating Teams</span>
+                  <span class="pill-icon">🏛️</span>
+                  <span class="pill-text">Public Service & Governance</span>
                 </span>
               </label>
             </div>
@@ -550,48 +559,16 @@
               <div class="card-step-badge">4</div>
               <div>
                 <h3 class="form-card-title">Current & Developing Skills <span class="required">*</span></h3>
-                <p class="form-card-desc">Select the skills you already have or are actively developing. (Select at least 1)</p>
+                <p class="form-card-desc">Select the practical strengths you have or are actively developing. (Select at least 1)</p>
               </div>
             </div>
 
             <div class="checkbox-pills-grid">
               <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="problem-solving">
-                <span class="pill-content">
-                  <span class="pill-icon">🧩</span>
-                  <span class="pill-text">Problem Solving & Logic</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
                 <input type="checkbox" name="skills" value="programming">
                 <span class="pill-content">
                   <span class="pill-icon">⌨️</span>
-                  <span class="pill-text">Programming Basics (Python/JS/Java)</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="ui-design">
-                <span class="pill-content">
-                  <span class="pill-icon">🎨</span>
-                  <span class="pill-text">Visual Design & Wireframing</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="math-stats">
-                <span class="pill-content">
-                  <span class="pill-icon">📐</span>
-                  <span class="pill-text">Math & Statistical Analysis</span>
-                </span>
-              </label>
-
-              <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="communication">
-                <span class="pill-content">
-                  <span class="pill-icon">🗣️</span>
-                  <span class="pill-text">Clear Verbal & Written Communication</span>
+                  <span class="pill-text">Programming & Logic</span>
                 </span>
               </label>
 
@@ -599,39 +576,87 @@
                 <input type="checkbox" name="skills" value="data-analysis">
                 <span class="pill-content">
                   <span class="pill-icon">📊</span>
-                  <span class="pill-text">Data Analysis (Excel / SQL / Graphs)</span>
+                  <span class="pill-text">Data Analysis & Spreadsheets</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="critical-thinking">
+                <input type="checkbox" name="skills" value="math-stats">
                 <span class="pill-content">
-                  <span class="pill-icon">🔍</span>
-                  <span class="pill-text">Critical Thinking & Troubleshooting</span>
+                  <span class="pill-icon">📐</span>
+                  <span class="pill-text">Math & Statistical Reasoning</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="empathy">
+                <input type="checkbox" name="skills" value="medical-science">
                 <span class="pill-content">
-                  <span class="pill-icon">❤️</span>
-                  <span class="pill-text">User Empathy & Interpersonal Care</span>
+                  <span class="pill-icon">🧬</span>
+                  <span class="pill-text">Biological & Healthcare Knowledge</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="organization">
+                <input type="checkbox" name="skills" value="teaching-skills">
                 <span class="pill-content">
-                  <span class="pill-icon">📅</span>
-                  <span class="pill-text">Project Planning & Organization</span>
+                  <span class="pill-icon">🗣️</span>
+                  <span class="pill-text">Explaining Concepts & Mentoring</span>
                 </span>
               </label>
 
               <label class="pill-checkbox">
-                <input type="checkbox" name="skills" value="writing">
+                <input type="checkbox" name="skills" value="cad-spatial">
                 <span class="pill-content">
-                  <span class="pill-icon">📄</span>
-                  <span class="pill-text">Technical Writing & Documentation</span>
+                  <span class="pill-icon">📐</span>
+                  <span class="pill-text">CAD & Spatial Modeling</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="design-tools">
+                <span class="pill-content">
+                  <span class="pill-icon">🎨</span>
+                  <span class="pill-text">Creative Visual Design Tools</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="security-skills">
+                <span class="pill-content">
+                  <span class="pill-icon">🛡️</span>
+                  <span class="pill-text">Security & Network Defense</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="business-modeling">
+                <span class="pill-content">
+                  <span class="pill-icon">💼</span>
+                  <span class="pill-text">Business Process Modeling</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="policy-ethics">
+                <span class="pill-content">
+                  <span class="pill-icon">⚖️</span>
+                  <span class="pill-text">Policy, Ethics & Leadership</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="problem-solving">
+                <span class="pill-content">
+                  <span class="pill-icon">🧩</span>
+                  <span class="pill-text">Problem Solving & Critical Thinking</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="communication">
+                <span class="pill-content">
+                  <span class="pill-icon">📝</span>
+                  <span class="pill-text">Clear Communication & Articulation</span>
                 </span>
               </label>
             </div>
@@ -650,90 +675,138 @@
 
             <div class="form-grid-2">
               <div class="pref-column">
-                <label class="form-label">Preferred Work Style & Environment <span class="required">*</span></label>
+                <label class="form-label">Preferred Work Environment <span class="required">*</span></label>
                 <div class="radio-stack">
                   <label class="radio-box">
                     <input type="radio" name="workStyle" value="remote-tech" checked>
                     <span class="radio-content">
-                      <span class="radio-title">Remote & Tech-Driven</span>
-                      <span class="radio-sub">Building digital software, tech products, or remote workflows</span>
+                      <span class="radio-title">Remote & Tech Workspaces</span>
+                      <span class="radio-sub">Building software, coding, or managing modern digital workflows</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="hospital-clinic">
+                    <span class="radio-content">
+                      <span class="radio-title">Hospitals & Clinical Facilities</span>
+                      <span class="radio-sub">Direct patient interaction, medical diagnosis, and healthcare service</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="school-classroom">
+                    <span class="radio-content">
+                      <span class="radio-title">Educational & Classroom Settings</span>
+                      <span class="radio-sub">Classroom teaching, mentoring students, and academic institutions</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="construction-field">
+                    <span class="radio-content">
+                      <span class="radio-title">Construction Sites & Field Offices</span>
+                      <span class="radio-sub">Civil infrastructure, building projects, and structural design offices</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
                     <input type="radio" name="workStyle" value="creative-studio">
                     <span class="radio-content">
-                      <span class="radio-title">Creative & Design Studio</span>
-                      <span class="radio-sub">Visual storytelling, interfaces, graphics, and branding</span>
+                      <span class="radio-title">Creative Studios & Design Agencies</span>
+                      <span class="radio-sub">Visual branding, creative arts, advertising, and digital graphics</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
-                    <input type="radio" name="workStyle" value="data-research">
+                    <input type="radio" name="workStyle" value="soc-security">
                     <span class="radio-content">
-                      <span class="radio-title">Data & Research Focused</span>
-                      <span class="radio-sub">Working with AI models, algorithms, insights, and lab discovery</span>
+                      <span class="radio-title">Security Operations Centers (SOC)</span>
+                      <span class="radio-sub">Monitoring digital perimeters, cyber defense, and network auditing</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
-                    <input type="radio" name="workStyle" value="business-leadership">
+                    <input type="radio" name="workStyle" value="corporate-business">
                     <span class="radio-content">
-                      <span class="radio-title">Corporate Leadership & Startups</span>
-                      <span class="radio-sub">Managing products, launching businesses, leading cross-functional teams</span>
+                      <span class="radio-title">Corporate Offices & Strategy Hubs</span>
+                      <span class="radio-sub">Optimizing business processes, management, and strategic consulting</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
-                    <input type="radio" name="workStyle" value="health-impact">
+                    <input type="radio" name="workStyle" value="govt-office">
                     <span class="radio-content">
-                      <span class="radio-title">Healthcare & Clinical Impact</span>
-                      <span class="radio-sub">Improving patient outcomes, medical technology, and biological science</span>
+                      <span class="radio-title">Government Offices & Public Administration</span>
+                      <span class="radio-sub">Public policy implementation, civic administration, and public welfare</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="data-ai-lab">
+                    <span class="radio-content">
+                      <span class="radio-title">Data & AI Research Labs</span>
+                      <span class="radio-sub">Working with machine learning models, algorithms, and deep analytics</span>
                     </span>
                   </label>
                 </div>
               </div>
 
               <div class="pref-column">
-                <label class="form-label">Primary Career Priority <span class="required">*</span></label>
+                <label class="form-label">Primary Career Goal & Priority <span class="required">*</span></label>
                 <div class="radio-stack">
                   <label class="radio-box">
                     <input type="radio" name="careerPriority" value="high-earning" checked>
                     <span class="radio-content">
                       <span class="radio-title">High Earning Potential</span>
-                      <span class="radio-sub">Top market salaries, tech equity, and financial rewards</span>
+                      <span class="radio-sub">Top market compensation, equity, and financial rewards</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
-                    <input type="radio" name="careerPriority" value="work-life">
+                    <input type="radio" name="careerPriority" value="job-security">
                     <span class="radio-content">
-                      <span class="radio-title">Work-Life Balance & Flexibility</span>
-                      <span class="radio-sub">Predictable hours, remote freedom, and mental wellbeing</span>
+                      <span class="radio-title">Job Stability & Security</span>
+                      <span class="radio-sub">Predictable tenure, respected public/professional security</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="social-impact">
+                    <span class="radio-content">
+                      <span class="radio-title">Social Impact & Helping Others</span>
+                      <span class="radio-sub">Making a direct, tangible difference in people's health and lives</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
                     <input type="radio" name="careerPriority" value="creativity">
                     <span class="radio-content">
-                      <span class="radio-title">Creativity & Self-Expression</span>
-                      <span class="radio-sub">Freedom to experiment, design, and create innovative experiences</span>
+                      <span class="radio-title">Creative Freedom & Expression</span>
+                      <span class="radio-sub">Freedom to experiment, illustrate, and craft visual experiences</span>
                     </span>
                   </label>
 
                   <label class="radio-box">
-                    <input type="radio" name="careerPriority" value="impact">
-                    <span class="radio-content">
-                      <span class="radio-title">Social Impact & Purpose</span>
-                      <span class="radio-sub">Helping individuals, supporting healthcare, or making communities safer</span>
-                    </span>
-                  </label>
-
-                  <label class="radio-box">
-                    <input type="radio" name="careerPriority" value="innovation">
+                    <input type="radio" name="careerPriority" value="tech-innovation">
                     <span class="radio-content">
                       <span class="radio-title">Cutting-Edge Innovation</span>
-                      <span class="radio-sub">Working on the latest technological breakthroughs and future trends</span>
+                      <span class="radio-sub">Working on futuristic breakthroughs and emerging technologies</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="public-service">
+                    <span class="radio-content">
+                      <span class="radio-title">Public Governance & National Service</span>
+                      <span class="radio-sub">Serving the public, community welfare, and constitutional governance</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="education-mentorship">
+                    <span class="radio-content">
+                      <span class="radio-title">Mentoring & Educational Legacy</span>
+                      <span class="radio-sub">Shaping the future through teaching, mentoring, and academic inspiration</span>
                     </span>
                   </label>
                 </div>
@@ -757,7 +830,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 3. RECOMMENDATIONS SECTION                -->
+    <!-- 4. RECOMMENDATIONS SECTION                -->
     <!-- ========================================== -->
     <section id="recommendations" class="spa-section">
       <div class="container section-container">
@@ -774,12 +847,21 @@
           <div class="rec-header-actions">
             <button type="button" class="btn btn-sm btn-outline" onclick="navigateToSection('assessment')">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-              Edit Assessment
+              Retake Assessment
             </button>
             <button type="button" class="btn btn-sm btn-primary" onclick="window.print()">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
               Print / Save PDF
             </button>
+          </div>
+        </div>
+
+        <!-- Transparent AI Disclaimer Banner -->
+        <div class="ai-transparency-note">
+          <div class="transparency-icon">ℹ️</div>
+          <div>
+            <strong>Transparent Rule-Based Guidance:</strong>
+            These recommendations are computed using an explainable multi-vector weighted scoring matrix matching your education, subjects, interests, and skills. They are intended as an educational planning guide and are not guaranteed AI career predictions.
           </div>
         </div>
 
@@ -793,16 +875,21 @@
           <div class="section-header text-center">
             <span class="section-badge">Career Directory</span>
             <h3 class="section-title">Explore All 10 Career Tracks</h3>
-            <p class="section-subtitle">Interested in exploring other high-growth industries? Click any career to see its full roadmap.</p>
+            <p class="section-subtitle">Interested in exploring other disciplines? Filter and click any career to view its complete learning roadmap.</p>
           </div>
 
           <div class="career-filter-bar">
             <button type="button" class="filter-chip active" data-domain="all" onclick="filterCareerDirectory('all')">All Disciplines</button>
-            <button type="button" class="filter-chip" data-domain="tech" onclick="filterCareerDirectory('tech')">Software & Cloud</button>
-            <button type="button" class="filter-chip" data-domain="data" onclick="filterCareerDirectory('data')">Data & AI</button>
-            <button type="button" class="filter-chip" data-domain="design" onclick="filterCareerDirectory('design')">Design & Creative</button>
-            <button type="button" class="filter-chip" data-domain="business" onclick="filterCareerDirectory('business')">Business & Growth</button>
-            <button type="button" class="filter-chip" data-domain="healthcare" onclick="filterCareerDirectory('healthcare')">Healthcare & Science</button>
+            <button type="button" class="filter-chip" data-domain="tech" onclick="filterCareerDirectory('tech')">Software & Web</button>
+            <button type="button" class="filter-chip" data-domain="data" onclick="filterCareerDirectory('data')">Data Analytics</button>
+            <button type="button" class="filter-chip" data-domain="ai" onclick="filterCareerDirectory('ai')">Artificial Intelligence</button>
+            <button type="button" class="filter-chip" data-domain="healthcare" onclick="filterCareerDirectory('healthcare')">Medicine & Healthcare</button>
+            <button type="button" class="filter-chip" data-domain="education" onclick="filterCareerDirectory('education')">Teaching & Education</button>
+            <button type="button" class="filter-chip" data-domain="engineering" onclick="filterCareerDirectory('engineering')">Civil Engineering</button>
+            <button type="button" class="filter-chip" data-domain="design" onclick="filterCareerDirectory('design')">Graphic Design</button>
+            <button type="button" class="filter-chip" data-domain="security" onclick="filterCareerDirectory('security')">Cybersecurity</button>
+            <button type="button" class="filter-chip" data-domain="business" onclick="filterCareerDirectory('business')">Business Analysis</button>
+            <button type="button" class="filter-chip" data-domain="public" onclick="filterCareerDirectory('public')">Government & Public</button>
           </div>
 
           <div id="all-careers-grid" class="careers-grid">
@@ -814,7 +901,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 4. LEARNING ROADMAP SECTION               -->
+    <!-- 5. LEARNING ROADMAP SECTION               -->
     <!-- ========================================== -->
     <section id="roadmap" class="spa-section">
       <div class="container section-container">
@@ -823,13 +910,13 @@
         <div class="roadmap-selector-card">
           <div class="selector-content">
             <span class="section-badge">Step-by-Step Learning Guide</span>
-            <h2 class="page-title" id="roadmap-title">Learning Roadmap: Full Stack Software Engineer</h2>
+            <h2 class="page-title" id="roadmap-title">Learning Roadmap: Software Developer</h2>
             <p class="page-desc" id="roadmap-tagline">
               Follow this structured, 4-phase learning progression from absolute beginner to industry-ready job applicant.
             </p>
           </div>
           <div class="selector-dropdown-box">
-            <label for="roadmap-career-select" class="selector-label">Switch Roadmap:</label>
+            <label for="roadmap-career-select" class="selector-label">Switch Career Roadmap:</label>
             <select id="roadmap-career-select" class="form-control" onchange="switchRoadmapCareer(this.value)">
               <!-- Options populated by JS -->
             </select>
@@ -846,7 +933,7 @@
           <div class="progress-panel-header">
             <div>
               <h4 class="panel-title">Your Learning Milestones Progress</h4>
-              <p class="panel-subtitle">Check off milestones as you master them. Your progress saves automatically in your browser.</p>
+              <p class="panel-subtitle">Check off milestones as you master them. Your progress saves automatically in your browser's local storage.</p>
             </div>
             <div class="progress-pct-badge" id="roadmap-progress-pct">0% Completed</div>
           </div>
@@ -873,14 +960,14 @@
           </div>
         </div>
 
-        <!-- Free Learning Resources & Next Steps -->
+        <!-- Free Learning Resources & Suggested Courses -->
         <div class="resources-block">
           <div class="resources-card">
             <div class="res-card-header">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              <h3>Curated Free Learning Resources</h3>
+              <h3>Curated Free Courses & Learning Resources</h3>
             </div>
-            <p class="res-card-desc">High-quality, free tutorials, documentation, and practice platforms for this career path:</p>
+            <p class="res-card-desc">High-quality, free tutorials, open-courseware, and certification platforms for this career path:</p>
             <ul class="resource-links-list" id="roadmap-resources-list">
               <!-- Injected via JavaScript -->
             </ul>
@@ -891,7 +978,7 @@
             <p>Retake the assessment with updated skills or explore alternative matches anytime.</p>
             <div class="card-action-row">
               <button type="button" class="btn btn-primary" onclick="navigateToSection('assessment')">Retake Assessment</button>
-              <button type="button" class="btn btn-outline" onclick="navigateToSection('recommendations')">Back to Recommendations</button>
+              <button type="button" class="btn btn-outline" onclick="navigateToSection('dashboard')">Back to Dashboard</button>
             </div>
           </div>
         </div>
@@ -938,6 +1025,7 @@
         <h4 class="footer-heading">Quick Navigation</h4>
         <ul class="footer-links">
           <li><a href="#home" onclick="navigateToSection('home')">Home Overview</a></li>
+          <li><a href="#dashboard" onclick="navigateToSection('dashboard')">Student Dashboard</a></li>
           <li><a href="#assessment" onclick="navigateToSection('assessment')">Career Assessment Form</a></li>
           <li><a href="#recommendations" onclick="navigateToSection('recommendations')">Top 3 Recommendations</a></li>
           <li><a href="#roadmap" onclick="navigateToSection('roadmap')">Learning Roadmap & Projects</a></li>
