@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Career Guidance Using AI | Discover Your Ideal Career Path</title>
+  <meta name="description" content="Beginner-friendly AI-driven career assessment, personalized recommendations, career details, and step-by-step learning roadmaps.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" id="brand-logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">CareerAI</span>
+          <span class="brand-subtitle">Smart Guidance System</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active" data-target="home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Home
+        </a>
+        <a href="#assessment" class="nav-link" data-target="assessment">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Assessment
+        </a>
+        <a href="#recommendations" class="nav-link" data-target="recommendations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          Recommendations
+          <span class="nav-pill-badge" id="rec-count-badge" style="display: none;">3</span>
+        </a>
+        <a href="#roadmap" class="nav-link" data-target="roadmap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+          Learning Roadmap
+        </a>
+      </nav>
+
+      <div class="nav-cta-wrapper">
+        <button type="button" class="btn btn-sm btn-primary" id="header-cta-btn" onclick="navigateToSection('assessment')">
+          Take Assessment
+        </button>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Banner for Saved Results -->
+  <div id="saved-results-banner" class="saved-banner container" style="display: none;">
+    <div class="saved-banner-content">
+      <div class="saved-banner-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+      </div>
+      <div class="saved-banner-text">
+        <span id="saved-banner-msg">Welcome back! We found your previous career assessment for <strong>Prajakta</strong>.</span>
+      </div>
+    </div>
+    <div class="saved-banner-actions">
+      <button type="button" class="btn btn-sm btn-outline-white" onclick="navigateToSection('recommendations')">View Saved Results</button>
+      <button type="button" class="btn btn-sm btn-ghost-white" onclick="clearSavedData()" title="Clear saved data">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Main Content Wrapper (Single Page Application Views) -->
+  <main class="main-content">
+
+    <!-- ========================================== -->
+    <!-- 1. HOME SECTION                           -->
+    <!-- ========================================== -->
+    <section id="home" class="spa-section active">
+      <!-- Hero -->
+      <div class="hero-section">
+        <div class="container hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="badge-dot"></span>
+              <span>Transparent Rule-Based AI Engine • 100% Free & Offline</span>
+            </div>
+            <h1 class="hero-title">
+              Discover Your Ideal Career with <span class="gradient-text">Smart AI Guidance</span>
+            </h1>
+            <p class="hero-subtitle">
+              Struggling to choose the right career path? Our intelligent career guidance system analyzes your favorite subjects, interests, skills, and goals to deliver tailored career recommendations and step-by-step learning roadmaps.
+            </p>
+            <div class="hero-actions">
+              <button type="button" class="btn btn-primary btn-lg" onclick="navigateToSection('assessment')">
+                <span>Start Career Assessment</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+              <button type="button" class="btn btn-secondary btn-lg" onclick="exploreAllCareers()">
+                <span>Explore Careers</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </button>
+            </div>
+            <div class="hero-trust">
+              <div class="trust-item">
+                <span class="trust-number">10+</span>
+                <span class="trust-label">Career Fields</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <span class="trust-number">40+</span>
+                <span class="trust-label">Industry Skills</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <span class="trust-number">Top 3</span>
+                <span class="trust-label">Smart Matches</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <span class="trust-number">100%</span>
+                <span class="trust-label">Privacy Protected</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-graphic">
+            <div class="ai-visual-card">
+              <div class="visual-header">
+                <div class="visual-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="visual-tag">Smart Career Matcher v1.0</span>
+              </div>
+              <div class="visual-body">
+                <div class="card-preview-row">
+                  <div class="preview-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="preview-info">
+                    <div class="preview-name">Student Profile Analysis</div>
+                    <div class="preview-status">Multi-Vector Compatibility Check</div>
+                  </div>
+                </div>
+                <div class="match-bars-demo">
+                  <div class="demo-bar-item">
+                    <div class="bar-label"><span>Software Engineering</span><span class="bar-pct">96%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 96%;"></div></div>
+                  </div>
+                  <div class="demo-bar-item">
+                    <div class="bar-label"><span>Data Science & AI</span><span class="bar-pct">89%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 89%;"></div></div>
+                  </div>
+                  <div class="demo-bar-item">
+                    <div class="bar-label"><span>UI/UX Product Design</span><span class="bar-pct">82%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 82%;"></div></div>
+                  </div>
+                </div>
+                <div class="preview-ai-badge">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span>Rule-Based Weighted Scoring Algorithm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <div class="section-block bg-subtle">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-badge">Simple 3-Step Process</span>
+            <h2 class="section-title">How Smart Career Guidance Works</h2>
+            <p class="section-subtitle">
+              We eliminate guesswork with a systematic, transparent algorithm that connects your real passions to in-demand professions.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-number">01</div>
+              <div class="step-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              </div>
+              <h3 class="step-title">Take the Assessment</h3>
+              <p class="step-desc">
+                Fill in your education level, favorite school subjects, personal interests, existing skills, and career priorities in a simple questionnaire.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">02</div>
+              <div class="step-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <h3 class="step-title">AI Compatibility Scoring</h3>
+              <p class="step-desc">
+                Our rule-based engine computes multi-dimensional match scores across industry roles, explaining exactly why each career fits your profile.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">03</div>
+              <div class="step-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <h3 class="step-title">Get Roadmap & Projects</h3>
+              <p class="step-desc">
+                Explore detailed role descriptions, required skills, degree paths, and follow an actionable 4-phase learning roadmap with suggested projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="section-block">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-badge">Key Features</span>
+            <h2 class="section-title">Built for Students & Career Switchers</h2>
+            <p class="section-subtitle">Everything you need to move from uncertainty to clarity.</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-item">
+              <div class="feature-icon blue-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <h4>Top 3 Career Recommendations</h4>
+              <p>Get your primary match along with two strong alternatives so you have versatile, high-growth career options.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon purple-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <h4>Deep Career Insights</h4>
+              <p>Explore day-to-day job duties, modern tool stacks, degree and educational routes, and average starting salaries.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon blue-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <h4>4-Phase Learning Roadmaps</h4>
+              <p>From beginner foundations to industry capstone projects, follow structured step-by-step milestones with progress tracking.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon purple-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              </div>
+              <h4>Hands-on Project Ideas</h4>
+              <p>Suggested beginner, intermediate, and advanced portfolio projects tailored to each career to prove your practical capability.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon blue-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path></svg>
+              </div>
+              <h4>Local Storage Persistence</h4>
+              <p>Your assessment and recommendations stay saved in your browser. Close the tab anytime and resume whenever you return.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon purple-bg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </div>
+              <h4>100% Transparent & Private</h4>
+              <p>No paid AI keys, no registration required, and no hidden tracking. Open-source, transparent rule-based logic.</p>
+            </div>
+          </div>
+
+          <div class="cta-banner">
+            <div class="cta-banner-content">
+              <h3>Ready to discover where your strengths can take you?</h3>
+              <p>Take 2 minutes to complete the guided assessment and receive your custom report.</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="navigateToSection('assessment')">
+              Start Assessment Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. ASSESSMENT SECTION                     -->
+    <!-- ========================================== -->
+    <section id="assessment" class="spa-section">
+      <div class="container section-container">
+        
+        <div class="assessment-header-card">
+          <div class="assessment-header-content">
+            <span class="section-badge">Student Assessment</span>
+            <h2 class="page-title">Personalized Career Assessment</h2>
+            <p class="page-desc">
+              Answer the questions below honestly. Our AI recommendation system analyzes your unique combination of academic interests, personal passions, practical skills, and long-term career aspirations.
+            </p>
+          </div>
+          
+          <!-- Quick Prefill Tools for easy beginner testing -->
+          <div class="prefill-box">
+            <span class="prefill-label">⚡ Quick Test Profiles (One-Click Demo):</span>
+            <div class="prefill-buttons">
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('tech')">Tech Enthusiast</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('creative')">Creative Designer</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('data')">Data & AI</button>
+              <button type="button" class="btn btn-xs btn-outline" onclick="loadSampleProfile('healthcare')">Healthcare & Science</button>
+              <button type="button" class="btn btn-xs btn-ghost text-danger" onclick="resetAssessmentForm()">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Validation Error Message Area -->
+        <div id="form-error-banner" class="alert-banner alert-danger" style="display: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <div id="form-error-text">Please complete all required fields before submitting.</div>
+        </div>
+
+        <!-- Assessment Form -->
+        <form id="career-assessment-form" onsubmit="handleAssessmentSubmit(event)" novalidate>
+          
+          <!-- Step 1: Personal & Education -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <div class="card-step-badge">1</div>
+              <div>
+                <h3 class="form-card-title">Personal & Academic Background</h3>
+                <p class="form-card-desc">Tell us your name and where you currently stand in your education journey.</p>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group" id="group-name">
+                <label for="student-name" class="form-label">
+                  Full Name <span class="required">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <input type="text" id="student-name" name="studentName" class="form-control" placeholder="e.g. Prajakta Sharma" required>
+                </div>
+                <span class="field-error-msg" id="error-name">Please enter your name.</span>
+              </div>
+
+              <div class="form-group" id="group-education">
+                <label for="education-level" class="form-label">
+                  Current Education Level <span class="required">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                  <select id="education-level" name="educationLevel" class="form-control" required>
+                    <option value="">-- Select Your Current Education Level --</option>
+                    <option value="highschool">High School (Grade 10th - 12th)</option>
+                    <option value="undergraduate">Undergraduate Student (College / University)</option>
+                    <option value="postgraduate">Postgraduate / Master's Student</option>
+                    <option value="switcher">Career Switcher / Self-Taught Professional</option>
+                  </select>
+                </div>
+                <span class="field-error-msg" id="error-education">Please select your education level.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Favorite Subjects -->
+          <div class="form-card" id="group-subjects">
+            <div class="form-card-header">
+              <div class="card-step-badge">2</div>
+              <div>
+                <h3 class="form-card-title">Favorite Subjects <span class="required">*</span></h3>
+                <p class="form-card-desc">Which academic subjects do you enjoy learning the most? (Select at least 1)</p>
+              </div>
+            </div>
+
+            <div class="checkbox-pills-grid">
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="math">
+                <span class="pill-content">
+                  <span class="pill-icon">📐</span>
+                  <span class="pill-text">Mathematics & Logic</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="cs">
+                <span class="pill-content">
+                  <span class="pill-icon">💻</span>
+                  <span class="pill-text">Computer Science & IT</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="physics">
+                <span class="pill-content">
+                  <span class="pill-icon">⚡</span>
+                  <span class="pill-text">Physics & Electronics</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="biology">
+                <span class="pill-content">
+                  <span class="pill-icon">🧬</span>
+                  <span class="pill-text">Biology & Life Sciences</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="arts">
+                <span class="pill-content">
+                  <span class="pill-icon">🎨</span>
+                  <span class="pill-text">Arts, Graphic Design & Media</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="business">
+                <span class="pill-content">
+                  <span class="pill-icon">📊</span>
+                  <span class="pill-text">Business, Economics & Commerce</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="psychology">
+                <span class="pill-content">
+                  <span class="pill-icon">🧠</span>
+                  <span class="pill-text">Psychology & Social Sciences</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="subjects" value="literature">
+                <span class="pill-content">
+                  <span class="pill-icon">✍️</span>
+                  <span class="pill-text">Literature & Writing</span>
+                </span>
+              </label>
+            </div>
+            <span class="field-error-msg" id="error-subjects">Please select at least one favorite subject.</span>
+          </div>
+
+          <!-- Step 3: Interests & Passions -->
+          <div class="form-card" id="group-interests">
+            <div class="form-card-header">
+              <div class="card-step-badge">3</div>
+              <div>
+                <h3 class="form-card-title">Interests & Passions <span class="required">*</span></h3>
+                <p class="form-card-desc">What activities genuinely spark your curiosity and excitement? (Select at least 1)</p>
+              </div>
+            </div>
+
+            <div class="checkbox-pills-grid">
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="coding">
+                <span class="pill-content">
+                  <span class="pill-icon">🚀</span>
+                  <span class="pill-text">Writing Code & Building Apps</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="design">
+                <span class="pill-content">
+                  <span class="pill-icon">✨</span>
+                  <span class="pill-text">UI/UX & Creative Visuals</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="data">
+                <span class="pill-content">
+                  <span class="pill-icon">📈</span>
+                  <span class="pill-text">Analyzing Data, Patterns & AI</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="security">
+                <span class="pill-content">
+                  <span class="pill-icon">🛡️</span>
+                  <span class="pill-text">Cybersecurity & Ethical Hacking</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="healthcare">
+                <span class="pill-content">
+                  <span class="pill-icon">🩺</span>
+                  <span class="pill-text">Healthcare, Medicine & Helping People</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="business">
+                <span class="pill-content">
+                  <span class="pill-icon">💼</span>
+                  <span class="pill-text">Business Strategy & Startups</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="marketing">
+                <span class="pill-content">
+                  <span class="pill-icon">📢</span>
+                  <span class="pill-text">Marketing, Social Media & Growth</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="hardware">
+                <span class="pill-content">
+                  <span class="pill-icon">🤖</span>
+                  <span class="pill-text">Cloud Infrastructure & Hardware</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="writing">
+                <span class="pill-content">
+                  <span class="pill-icon">📝</span>
+                  <span class="pill-text">Content Writing & Technical Storytelling</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="interests" value="leadership">
+                <span class="pill-content">
+                  <span class="pill-icon">👥</span>
+                  <span class="pill-text">Project Leadership & Coordinating Teams</span>
+                </span>
+              </label>
+            </div>
+            <span class="field-error-msg" id="error-interests">Please select at least one interest.</span>
+          </div>
+
+          <!-- Step 4: Current & Developing Skills -->
+          <div class="form-card" id="group-skills">
+            <div class="form-card-header">
+              <div class="card-step-badge">4</div>
+              <div>
+                <h3 class="form-card-title">Current & Developing Skills <span class="required">*</span></h3>
+                <p class="form-card-desc">Select the skills you already have or are actively developing. (Select at least 1)</p>
+              </div>
+            </div>
+
+            <div class="checkbox-pills-grid">
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="problem-solving">
+                <span class="pill-content">
+                  <span class="pill-icon">🧩</span>
+                  <span class="pill-text">Problem Solving & Logic</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="programming">
+                <span class="pill-content">
+                  <span class="pill-icon">⌨️</span>
+                  <span class="pill-text">Programming Basics (Python/JS/Java)</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="ui-design">
+                <span class="pill-content">
+                  <span class="pill-icon">🎨</span>
+                  <span class="pill-text">Visual Design & Wireframing</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="math-stats">
+                <span class="pill-content">
+                  <span class="pill-icon">📐</span>
+                  <span class="pill-text">Math & Statistical Analysis</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="communication">
+                <span class="pill-content">
+                  <span class="pill-icon">🗣️</span>
+                  <span class="pill-text">Clear Verbal & Written Communication</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="data-analysis">
+                <span class="pill-content">
+                  <span class="pill-icon">📊</span>
+                  <span class="pill-text">Data Analysis (Excel / SQL / Graphs)</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="critical-thinking">
+                <span class="pill-content">
+                  <span class="pill-icon">🔍</span>
+                  <span class="pill-text">Critical Thinking & Troubleshooting</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="empathy">
+                <span class="pill-content">
+                  <span class="pill-icon">❤️</span>
+                  <span class="pill-text">User Empathy & Interpersonal Care</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="organization">
+                <span class="pill-content">
+                  <span class="pill-icon">📅</span>
+                  <span class="pill-text">Project Planning & Organization</span>
+                </span>
+              </label>
+
+              <label class="pill-checkbox">
+                <input type="checkbox" name="skills" value="writing">
+                <span class="pill-content">
+                  <span class="pill-icon">📄</span>
+                  <span class="pill-text">Technical Writing & Documentation</span>
+                </span>
+              </label>
+            </div>
+            <span class="field-error-msg" id="error-skills">Please select at least one skill.</span>
+          </div>
+
+          <!-- Step 5: Career Goals & Work Style Preferences -->
+          <div class="form-card" id="group-goals">
+            <div class="form-card-header">
+              <div class="card-step-badge">5</div>
+              <div>
+                <h3 class="form-card-title">Career Goals & Work Preferences <span class="required">*</span></h3>
+                <p class="form-card-desc">What kind of work environment and overarching outcome matters most to you?</p>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="pref-column">
+                <label class="form-label">Preferred Work Style & Environment <span class="required">*</span></label>
+                <div class="radio-stack">
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="remote-tech" checked>
+                    <span class="radio-content">
+                      <span class="radio-title">Remote & Tech-Driven</span>
+                      <span class="radio-sub">Building digital software, tech products, or remote workflows</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="creative-studio">
+                    <span class="radio-content">
+                      <span class="radio-title">Creative & Design Studio</span>
+                      <span class="radio-sub">Visual storytelling, interfaces, graphics, and branding</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="data-research">
+                    <span class="radio-content">
+                      <span class="radio-title">Data & Research Focused</span>
+                      <span class="radio-sub">Working with AI models, algorithms, insights, and lab discovery</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="business-leadership">
+                    <span class="radio-content">
+                      <span class="radio-title">Corporate Leadership & Startups</span>
+                      <span class="radio-sub">Managing products, launching businesses, leading cross-functional teams</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="workStyle" value="health-impact">
+                    <span class="radio-content">
+                      <span class="radio-title">Healthcare & Clinical Impact</span>
+                      <span class="radio-sub">Improving patient outcomes, medical technology, and biological science</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="pref-column">
+                <label class="form-label">Primary Career Priority <span class="required">*</span></label>
+                <div class="radio-stack">
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="high-earning" checked>
+                    <span class="radio-content">
+                      <span class="radio-title">High Earning Potential</span>
+                      <span class="radio-sub">Top market salaries, tech equity, and financial rewards</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="work-life">
+                    <span class="radio-content">
+                      <span class="radio-title">Work-Life Balance & Flexibility</span>
+                      <span class="radio-sub">Predictable hours, remote freedom, and mental wellbeing</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="creativity">
+                    <span class="radio-content">
+                      <span class="radio-title">Creativity & Self-Expression</span>
+                      <span class="radio-sub">Freedom to experiment, design, and create innovative experiences</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="impact">
+                    <span class="radio-content">
+                      <span class="radio-title">Social Impact & Purpose</span>
+                      <span class="radio-sub">Helping individuals, supporting healthcare, or making communities safer</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-box">
+                    <input type="radio" name="careerPriority" value="innovation">
+                    <span class="radio-content">
+                      <span class="radio-title">Cutting-Edge Innovation</span>
+                      <span class="radio-sub">Working on the latest technological breakthroughs and future trends</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Submit Actions -->
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary btn-lg" id="submit-assessment-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Analyze Profile & Get AI Recommendations</span>
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="resetAssessmentForm()">
+              Clear Answers
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. RECOMMENDATIONS SECTION                -->
+    <!-- ========================================== -->
+    <section id="recommendations" class="spa-section">
+      <div class="container section-container">
+        
+        <!-- Header & Student Context -->
+        <div class="recommendations-header-card">
+          <div class="rec-header-text">
+            <span class="section-badge">AI Recommendations</span>
+            <h2 class="page-title" id="rec-student-heading">Your Top Recommended Career Paths</h2>
+            <p class="page-desc" id="rec-summary-text">
+              Based on your multi-vector profile, our transparent rule-based algorithm has identified your top 3 matching career fields.
+            </p>
+          </div>
+          <div class="rec-header-actions">
+            <button type="button" class="btn btn-sm btn-outline" onclick="navigateToSection('assessment')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              Edit Assessment
+            </button>
+            <button type="button" class="btn btn-sm btn-primary" onclick="window.print()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print / Save PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Recommendation Cards Container (Top 3) -->
+        <div id="top-recommendations-list" class="recommendations-stack">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- All Other Career Paths (Browse Section) -->
+        <div class="other-careers-block">
+          <div class="section-header text-center">
+            <span class="section-badge">Career Directory</span>
+            <h3 class="section-title">Explore All 10 Career Tracks</h3>
+            <p class="section-subtitle">Interested in exploring other high-growth industries? Click any career to see its full roadmap.</p>
+          </div>
+
+          <div class="career-filter-bar">
+            <button type="button" class="filter-chip active" data-domain="all" onclick="filterCareerDirectory('all')">All Disciplines</button>
+            <button type="button" class="filter-chip" data-domain="tech" onclick="filterCareerDirectory('tech')">Software & Cloud</button>
+            <button type="button" class="filter-chip" data-domain="data" onclick="filterCareerDirectory('data')">Data & AI</button>
+            <button type="button" class="filter-chip" data-domain="design" onclick="filterCareerDirectory('design')">Design & Creative</button>
+            <button type="button" class="filter-chip" data-domain="business" onclick="filterCareerDirectory('business')">Business & Growth</button>
+            <button type="button" class="filter-chip" data-domain="healthcare" onclick="filterCareerDirectory('healthcare')">Healthcare & Science</button>
+          </div>
+
+          <div id="all-careers-grid" class="careers-grid">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. LEARNING ROADMAP SECTION               -->
+    <!-- ========================================== -->
+    <section id="roadmap" class="spa-section">
+      <div class="container section-container">
+        
+        <!-- Roadmap Active Career Switcher Bar -->
+        <div class="roadmap-selector-card">
+          <div class="selector-content">
+            <span class="section-badge">Step-by-Step Learning Guide</span>
+            <h2 class="page-title" id="roadmap-title">Learning Roadmap: Full Stack Software Engineer</h2>
+            <p class="page-desc" id="roadmap-tagline">
+              Follow this structured, 4-phase learning progression from absolute beginner to industry-ready job applicant.
+            </p>
+          </div>
+          <div class="selector-dropdown-box">
+            <label for="roadmap-career-select" class="selector-label">Switch Roadmap:</label>
+            <select id="roadmap-career-select" class="form-control" onchange="switchRoadmapCareer(this.value)">
+              <!-- Options populated by JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Roadmap Overview Hero Card -->
+        <div class="roadmap-overview-card" id="roadmap-hero-details">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Interactive Milestone Progress Tracker -->
+        <div class="roadmap-progress-panel">
+          <div class="progress-panel-header">
+            <div>
+              <h4 class="panel-title">Your Learning Milestones Progress</h4>
+              <p class="panel-subtitle">Check off milestones as you master them. Your progress saves automatically in your browser.</p>
+            </div>
+            <div class="progress-pct-badge" id="roadmap-progress-pct">0% Completed</div>
+          </div>
+          <div class="progress-track-lg">
+            <div class="progress-fill-lg" id="roadmap-progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Roadmap 4-Phase Timeline -->
+        <div class="timeline-container" id="roadmap-phases-timeline">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Suggested Hands-on Projects Section -->
+        <div class="projects-section-block">
+          <div class="section-header">
+            <span class="section-badge">Portfolio Builders</span>
+            <h3 class="section-title">Recommended Hands-on Projects</h3>
+            <p class="section-subtitle">Real skills are forged through building. Build these 3 graded projects to showcase on your resume.</p>
+          </div>
+
+          <div class="projects-grid" id="roadmap-projects-grid">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Free Learning Resources & Next Steps -->
+        <div class="resources-block">
+          <div class="resources-card">
+            <div class="res-card-header">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <h3>Curated Free Learning Resources</h3>
+            </div>
+            <p class="res-card-desc">High-quality, free tutorials, documentation, and practice platforms for this career path:</p>
+            <ul class="resource-links-list" id="roadmap-resources-list">
+              <!-- Injected via JavaScript -->
+            </ul>
+          </div>
+
+          <div class="resources-action-card">
+            <h3>Need to re-evaluate your goals?</h3>
+            <p>Retake the assessment with updated skills or explore alternative matches anytime.</p>
+            <div class="card-action-row">
+              <button type="button" class="btn btn-primary" onclick="navigateToSection('assessment')">Retake Assessment</button>
+              <button type="button" class="btn btn-outline" onclick="navigateToSection('recommendations')">Back to Recommendations</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AI Analyzing Loading Overlay Modal -->
+  <div class="ai-modal-backdrop" id="ai-modal-backdrop" style="display: none;">
+    <div class="ai-modal-card">
+      <div class="ai-modal-spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-core">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
+      </div>
+      <h3 class="modal-title">AI Engine is Analyzing Your Profile...</h3>
+      <p class="modal-status-text" id="ai-modal-status">Cross-referencing subject strengths...</p>
+      <div class="modal-progress-bar">
+        <div class="modal-progress-fill" id="modal-progress-fill" style="width: 20%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col-brand">
+        <div class="footer-brand">
+          <div class="logo-icon-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <span class="footer-title">Smart Career Guidance Using AI</span>
+        </div>
+        <p class="footer-desc">
+          An interactive, beginner-friendly web application designed to help students discover data-informed career paths and actionable learning roadmaps.
+        </p>
+        <span class="engine-badge">Engine: Transparent Weighted Rule-Based AI</span>
+      </div>
+
+      <div class="footer-col-nav">
+        <h4 class="footer-heading">Quick Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home" onclick="navigateToSection('home')">Home Overview</a></li>
+          <li><a href="#assessment" onclick="navigateToSection('assessment')">Career Assessment Form</a></li>
+          <li><a href="#recommendations" onclick="navigateToSection('recommendations')">Top 3 Recommendations</a></li>
+          <li><a href="#roadmap" onclick="navigateToSection('roadmap')">Learning Roadmap & Projects</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-info">
+        <h4 class="footer-heading">Privacy & Integrity</h4>
+        <p class="footer-small-text">
+          • All data stored locally in your browser (LocalStorage).<br>
+          • No third-party tracking, paid API keys, or cloud servers required.<br>
+          • Built with pure HTML5, CSS3, and modern JavaScript.
+        </p>
+        <div class="footer-copyright">
+          © <span id="current-year">2026</span> Smart Career Guidance System. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
